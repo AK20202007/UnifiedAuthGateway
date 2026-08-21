@@ -1,0 +1,17 @@
+[Unit]
+Description=Unified Auth Gateway - Django Auth Server
+After=network.target
+
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/var/www/UnifiedAuthGateway/auth_server
+ExecStart=/var/www/UnifiedAuthGateway/auth_server/venv/bin/gunicorn --workers 3 --bind unix:/var/www/UnifiedAuthGateway/auth_server/auth_server.sock auth_project.wsgi:application
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+# Note: In a real Linux VM environment, you would create similar .service files 
+# for the django_api and springboot_api, and use a reverse proxy like NGINX 
+# to route traffic to the different sockets/ports.
