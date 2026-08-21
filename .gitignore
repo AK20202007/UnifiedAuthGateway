@@ -6,4 +6,3 @@ venv/
 *.pem
 db.sqlite3
 /springboot_api/target/
-/springboot_api/.mvn/
