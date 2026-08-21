@@ -1,0 +1,14 @@
+[Unit]
+Description=Unified Auth Gateway - Django Auth Server
+After=network.target
+
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/var/www/UnifiedAuthGateway/auth_server
+ExecStart=/var/www/UnifiedAuthGateway/auth_server/venv/bin/gunicorn --workers 3 --bind 127.0.0.1:8000 auth_project.wsgi:application
+Restart=always
+Environment="DJANGO_SETTINGS_MODULE=auth_project.settings"
+
+[Install]
+WantedBy=multi-user.target

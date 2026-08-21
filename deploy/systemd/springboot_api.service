@@ -1,0 +1,14 @@
+[Unit]
+Description=Unified Auth Gateway - Spring Boot API Resource Server
+After=network.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/var/www/UnifiedAuthGateway/springboot_api
+ExecStart=/usr/bin/java -jar /var/www/UnifiedAuthGateway/springboot_api/target/springboot-api-0.0.1-SNAPSHOT.jar
+SuccessExitStatus=143
+Restart=always
+Environment="SERVER_PORT=8080"
+
+[Install]
+WantedBy=multi-user.target
